@@ -10,20 +10,18 @@ import ShowComponent from './components/showComponent';
 import HomeContainer from './components/home';
 
 const initialState={
-  count: 0,
   Pin:"",
   Inner:"No",
 };
 
-const counterReducer  = (state = initialState, action) => {
+const LoginReducer  = (state = initialState, action) => {
   switch(action.type) {
     case 'INCREMENT':
       return {
         ...state, 
-        count: state.count + 1,
         Pin: action.Pin
       }
-    case 'CHECK':
+    case 'LOGIN':
       if (state.Pin === action.ToPin){
         return {
           ...state,
@@ -36,17 +34,17 @@ const counterReducer  = (state = initialState, action) => {
           Inner: "No"
         }
       }
-    case 'DECREMENT':
+    case 'LOGOUT':
       return { 
-        count: state.count - 1,
-        Pin: ""
+        Pin: "",
+        Inner: "No"
       }
     default:
       return state
   }
 };
 
-const store = createStore(counterReducer);
+const store = createStore(LoginReducer);
 store.subscribe(()=> store.getState())
 class App extends Component {
   render() {
@@ -54,10 +52,9 @@ class App extends Component {
       <div className="App">
       <Provider store={store}>
         <main className="content">
-            {/* <ShowComponent /> */}
-            {/* <Route path='/' exact component={HomeComponent} /> */}
-            <Route path='/' exact component={HomeContainer} />
-            <Route path='/login' exact component={ShowComponent} />
+          
+          <Route path='/' exact component={HomeContainer} />
+          <Route path='/login' exact component={ShowComponent} />
         </main>
       </Provider>
       </div>

@@ -15,7 +15,8 @@ class Home extends Component {
   render() {
     return (
       <div className="App container-fluid">
-        <button className="btn btn-success" type='button' onClick={() => { this.props.history.push('/create') }}>Create application</button>
+        <button className="btn btn-success" type='button' onClick={() => { this.props.history.push('/login') }}>Login</button>
+        <button className="btn btn-success" type='button' onClick={() => { this.props.dispatch({type: 'LOGOUT'}); this.props.history.push('/login') }}>logout</button>
       </div>
     );
   }
